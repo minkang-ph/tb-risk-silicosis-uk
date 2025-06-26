@@ -1,42 +1,47 @@
 ******************************************************
 * 01_descriptive_tables_tb.do
 * Descriptive statistics and crude ORs for TB study
-* Dataset: ukminers_tbstudy.dta
 ******************************************************
-
-clear all
-set more off
 
 use "data/ukminers_tbstudy.dta", clear
 
-* Checks for missing data and coding structure
+* --- Step 1: Basic checks ---
 codebook tb silicosis agecat yrsindcat dwelling jobtype country grade previoustb
 misstable summarize
+
+* --- Step 2: Confirm variable structure ---
 tab agecat, missing
 tab yrsindcat, missing
 
-* Table 1: Cross-tabulate TB status by all explanatory variables
-tab tb silicosis, row col chi2
-tab tb agecat, row col chi2
-tab tb yrsindcat, row col chi2
-tab tb dwelling, row col chi2
-tab tb jobtype, row col chi2
-tab tb country, row col chi2
-tab tb grade, row col chi2
-tab tb previoustb, row col chi2
+* --- Step 3: Cross-tabulation with TB outcome ---
+tab tb silicosis, row chi2
+tab tb agecat, row chi2
+tab tb yrsindcat, row chi2
+tab tb dwelling, row chi2
+tab tb jobtype, row chi2
+tab tb country, row chi2
+tab tb grade, row chi2
+tab tb previoustb, row chi2
 
-* Score test for trend (ordinal age)
-scoretest tb agecat
+* --- Step 4: Crude ORs for binary variables (using 'cc') ---
+cc tb silicosis
+cc tb yrsindcat
+cc tb dwelling
+cc tb jobtype
+cc tb grade
+cc tb previoustb
 
-* Crude odds ratios using logistic regression
-logit tb silicosis
+* --- Step 5: Crude ORs for categorical variables via logistic regression ---
 logit tb i.agecat
-logit tb i.yrsindcat
-logit tb i.dwelling
-logit tb i.jobtype
 logit tb i.country
-logit tb i.grade
-logit tb i.previoustb
 
-* ORs with 95% CIs
-logit tb i.silicosis, or
+* --- Step 6: Test for trend in age (ordinal vs. categorical) ---
+logit tb agecat
+est store A
+logit tb i.agecat
+est store B
+lrtest A B
+
+*******************************************************
+* End of file
+*******************************************************
