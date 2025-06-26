@@ -41,11 +41,13 @@ See [`analysis.md`](./analysis.md) for full methodology and model comparisons.
 ---
 
 ## 📁 Repository Structure
+```
 tb-risk-uk/
 ├── README.md             # This overview file
 ├── analysis.md           # Full analytical report with code & interpretation
 ├── do_files/             # STATA .do files 
 └── outputs/              # Tables or figures (if any)
+```
 
 ---
 
@@ -57,13 +59,3 @@ tb-risk-uk/
 - **Interpretation**: Although the association attenuated after adjustment, silicosis remained a significant predictor of TB risk. Sparse data in some strata reduced precision.
 - **Limitations**: Non-differential misclassification, possible selection bias, reliance on treatment as proxy for TB diagnosis.
 
----
-
-## ⚙️ Tools & License
-
-- Analysis conducted using **Stata 17**.
-- Repository licensed under the **MIT License**.
-
----
-
-🧑‍💼 Author: *Min Kang* (2025 MSc Public Health Candidate)
