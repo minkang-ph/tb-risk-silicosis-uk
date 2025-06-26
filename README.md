@@ -45,8 +45,7 @@ See [`analysis.md`](./analysis.md) for full methodology and model comparisons.
 tb-risk-uk/
 ├── README.md             # This overview file
 ├── analysis.md           # Full analytical report with code & interpretation
-├── do_files/             # STATA .do files 
-└── outputs/              # Tables or figures (if any)
+└── do_files/             # STATA .do files 
 ```
 
 ---
