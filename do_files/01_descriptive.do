@@ -1,5 +1,5 @@
 ******************************************************
-* 01_descriptive_tables_tb.do
+* 01_descriptive.do
 * Descriptive statistics and crude ORs for TB study
 ******************************************************
 
@@ -23,17 +23,16 @@ tab tb country, row chi2
 tab tb grade, row chi2
 tab tb previoustb, row chi2
 
-* --- Step 4: Crude ORs for binary variables (using 'cc') ---
-cc tb silicosis
-cc tb yrsindcat
-cc tb dwelling
-cc tb jobtype
-cc tb grade
-cc tb previoustb
+* --- Step 4: Crude ORs for binary variables ---
+logit tb yrsindcat, or
+logit tb dwelling, or
+logit tb jobtype, or
+logit tb grade, or
+logit tb previoustb, or
 
-* --- Step 5: Crude ORs for categorical variables via logistic regression ---
-logit tb i.agecat
-logit tb i.country
+* --- Step 5: Crude ORs for categorical variables ---
+logit tb i.agecat, or
+logit tb i.country, or
 
 * --- Step 6: Test for trend in age (ordinal vs. categorical) ---
 logit tb agecat
